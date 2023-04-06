@@ -10,14 +10,27 @@
 <title>Bank 애플리케이션</title>
 <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-<ul>
-<li><a href="/loginForm">로그인</a></li>
-<li><a href="/joinForm">회원가입</a></li>
-<li><a href="/logout">로그아웃</a></li>
-<li><a href="/account">계좌목록(인증)</a></li>
-<li><a href="/account/saveForm">계좌생성(인증)</a></li>
-<li><a href="/account/transferForm">이체하기(인증)</a></li>
-<li><a href="/account/withdrawForm">출금하기(미인증)</a></li>
-<li><a href="/account/depositForm">입금하기(미인증)</a></li>
-</ul>
+ <body>
+      <ul>
+	
+          <c:choose>
+              <c:when test="${principal != null}">
+                  <li><a href="/logout">로그아웃</a></li>
+                  <li><a href="/account">계좌목록(인증)</a></li>
+                  <li><a href="/account/saveForm">계좌생성(인증)</a></li>
+                  <li><a href="/account/transferForm">이체하기(인증)</a></li>
+                  <li><a href="/account/withdrawForm">출금하기(미인증)</a></li>
+                  <li><a href="/account/depositForm">입금하기(미인증)</a></li>
+              </c:when>
+
+		
+              <c:otherwise>
+                  <li><a href="/loginForm">로그인</a></li>
+                  <li><a href="/joinForm">회원가입</a></li>
+                  <li><a href="/account/withdrawForm">출금하기(미인증)</a></li>
+                  <li><a href="/account/depositForm">입금하기(미인증)</a></li>
+              </c:otherwise>
+          </c:choose>
+
+
+      </ul>
